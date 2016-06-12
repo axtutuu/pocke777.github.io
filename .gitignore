@@ -1,0 +1,7 @@
+node_modules
+.bundle
+_config.yml
+db.json
+package.json
+scaffolds/
+themes/
