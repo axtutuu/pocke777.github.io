@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Get Error with Too-many-open-files | となりのPocke</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Find Too-many-open-filesrspec や minitest を回すときにたまに遭遇するToo-many-open-filesファイルディスクリプタの上限数に達していることが原因
+123456789101112131415161718192021222324252627282930313233# テストコケまくり!! と思いきや failしているHogeTest  #POST/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Get Error with Too-many-open-files">
+<meta property="og:url" content="http://pocke777.github.io/2016/06/16/mac-Too-many-open-files/index.html">
+<meta property="og:site_name" content="となりのPocke">
+<meta property="og:description" content="Find Too-many-open-filesrspec や minitest を回すときにたまに遭遇するToo-many-open-filesファイルディスクリプタの上限数に達していることが原因
+123456789101112131415161718192021222324252627282930313233# テストコケまくり!! と思いきや failしているHogeTest  #POST/">
+<meta property="og:updated_time" content="2016-06-16T05:28:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Get Error with Too-many-open-files">
+<meta name="twitter:description" content="Find Too-many-open-filesrspec や minitest を回すときにたまに遭遇するToo-many-open-filesファイルディスクリプタの上限数に達していることが原因
+123456789101112131415161718192021222324252627282930313233# テストコケまくり!! と思いきや failしているHogeTest  #POST/">
+  
+    <link rel="alternate" href="/atom.xml" title="となりのPocke" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">となりのPocke</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://pocke777.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mac-Too-many-open-files" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/16/mac-Too-many-open-files/" class="article-date">
+  <time datetime="2016-06-16T05:28:16.000Z" itemprop="datePublished">2016-06-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Get Error with Too-many-open-files
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Find-Too-many-open-files"><a href="#Find-Too-many-open-files" class="headerlink" title="Find Too-many-open-files"></a>Find Too-many-open-files</h2><p><code>rspec</code> や <code>minitest</code> を回すときにたまに遭遇する<code>Too-many-open-files</code><br>ファイルディスクリプタの上限数に達していることが原因</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># テストコケまくり!! と思いきや failしている</span><br><span class="line">HogeTest</span><br><span class="line">  #POST/hoge</span><br><span class="line"></span><br><span class="line">  Errno::EMFILE</span><br><span class="line">  Too many open files - getcwd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">FugaTest</span><br><span class="line">  InvalidValue</span><br><span class="line"></span><br><span class="line">  Errno::EMFILE</span><br><span class="line">  Too many open files - getcwd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 現在のファイルリミット数</span><br><span class="line">$ launchctl limit maxfiles</span><br><span class="line">maxfiles    256            unlimited</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># オープンファイルをプロセスごとに一覧化</span><br><span class="line">$ lsof | awk &apos;&#123;print $1, $2&#125;&apos; | sort | uniq -c | sort -rn</span><br><span class="line">1705 duet 70485</span><br><span class="line">1077 Google 838</span><br><span class="line"> 576 Dock 619</span><br><span class="line"> 299 Google 731</span><br><span class="line"> 299 Dropbox 711</span><br><span class="line"> 298 Finder 623</span><br><span class="line"> 237 SIMBL\x20 645</span><br><span class="line"> 204 mysqld 41836</span><br><span class="line"> 177 AppleSpel 5393</span><br><span class="line"> 153 iTerm 15385</span><br></pre></td></tr></table></figure>
+<h2 id="Fix"><a href="#Fix" class="headerlink" title="Fix"></a>Fix</h2><p>一時的にlimit数を引き上げる</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ulimit -n 1024</span><br><span class="line"># 設定画変更されていることを確認</span><br><span class="line">$ ulimit -n</span><br><span class="line">1024</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://docs.basho.com/riak/kv/2.1.4/using/performance/open-files-limit/#mac-os-x" target="_blank" rel="external">https://docs.basho.com/riak/kv/2.1.4/using/performance/open-files-limit/#mac-os-x</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://pocke777.github.io/2016/06/16/mac-Too-many-open-files/" data-id="ciphv8myp00038f20nvpqadzm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OSX/">OSX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Troubleshooting/">Troubleshooting</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/14/rails-boolean-validation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【Ruby on Rails】boolean型のカラムに必須制約を付ける方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atom/">Atom</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSX/">OSX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSS/">RSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Troubleshooting/">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boolean/">boolean</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Atom/" style="font-size: 10px;">Atom</a> <a href="/tags/OSX/" style="font-size: 10px;">OSX</a> <a href="/tags/RSS/" style="font-size: 10px;">RSS</a> <a href="/tags/Ruby-on-Rails/" style="font-size: 20px;">Ruby on Rails</a> <a href="/tags/Troubleshooting/" style="font-size: 10px;">Troubleshooting</a> <a href="/tags/boolean/" style="font-size: 10px;">boolean</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Arkiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Siste innlegg</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/16/mac-Too-many-open-files/">Get Error with Too-many-open-files</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/14/rails-boolean-validation/">【Ruby on Rails】boolean型のカラムに必須制約を付ける方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/14/rails-rss/">RSS 2.0 feed in Ruby on Rails</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/12/My-First-Post/">My First Post</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/12/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Pocke777<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
