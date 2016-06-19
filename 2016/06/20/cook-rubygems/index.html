@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Rubygems の作成から公開まで | となりのPocke</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="はじめに今回公開したGem
+
+郵便番号から住所検索
+Rakeタスクで最新の郵便番号を取り込み
+海外の郵便番号も欲しい &amp;lt;- まだ未対応とのことなので今回のGemを作成
+
+world_postal_codeshttps://rubygems.org/gems/world_postal_codes
+手順
+1.雛形の作成
+
+雛形を作成するためにいつもはパッケージマネージャーで活躍するbundler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rubygems の作成から公開まで">
+<meta property="og:url" content="http://pocke777.github.io/2016/06/20/cook-rubygems/index.html">
+<meta property="og:site_name" content="となりのPocke">
+<meta property="og:description" content="はじめに今回公開したGem
+
+郵便番号から住所検索
+Rakeタスクで最新の郵便番号を取り込み
+海外の郵便番号も欲しい &amp;lt;- まだ未対応とのことなので今回のGemを作成
+
+world_postal_codeshttps://rubygems.org/gems/world_postal_codes
+手順
+1.雛形の作成
+
+雛形を作成するためにいつもはパッケージマネージャーで活躍するbundler">
+<meta property="og:updated_time" content="2016-06-19T15:27:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rubygems の作成から公開まで">
+<meta name="twitter:description" content="はじめに今回公開したGem
+
+郵便番号から住所検索
+Rakeタスクで最新の郵便番号を取り込み
+海外の郵便番号も欲しい &amp;lt;- まだ未対応とのことなので今回のGemを作成
+
+world_postal_codeshttps://rubygems.org/gems/world_postal_codes
+手順
+1.雛形の作成
+
+雛形を作成するためにいつもはパッケージマネージャーで活躍するbundler">
+  
+    <link rel="alternate" href="/atom.xml" title="となりのPocke" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">となりのPocke</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://pocke777.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cook-rubygems" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/20/cook-rubygems/" class="article-date">
+  <time datetime="2016-06-19T15:27:30.000Z" itemprop="datePublished">2016-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Rubygems の作成から公開まで
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="はじめに"><a href="#はじめに" class="headerlink" title="はじめに"></a>はじめに</h2><p>今回公開したGem</p>
+<ul>
+<li>郵便番号から住所検索</li>
+<li>Rakeタスクで最新の郵便番号を取り込み</li>
+<li>海外の郵便番号も欲しい &lt;- まだ未対応<br>とのことなので今回のGemを作成</li>
+</ul>
+<p>world_postal_codes<br><a href="https://rubygems.org/gems/world_postal_codes" target="_blank" rel="external">https://rubygems.org/gems/world_postal_codes</a></p>
+<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><ul>
+<li>1.雛形の作成</li>
+</ul>
+<p>雛形を作成するためにいつもはパッケージマネージャーで活躍するbundlerを使用します。<br><a href="http://bundler.io/v1.12/bundle_gem.html" target="_blank" rel="external">http://bundler.io/v1.12/bundle_gem.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 初回起動時は色々オプションを聞かれるので適当に答えましょう</span><br><span class="line">$ bundle gem gem_gem_gem</span><br><span class="line"></span><br><span class="line">Creating gem &apos;gem_gem_gem&apos;...</span><br><span class="line">MIT License enabled in config</span><br><span class="line">Code of conduct enabled in config</span><br><span class="line">      create  gem_gem_gem/Gemfile</span><br><span class="line">      create  gem_gem_gem/.gitignore</span><br><span class="line">      create  gem_gem_gem/lib/gem_gem_gem.rb</span><br><span class="line">      create  gem_gem_gem/lib/gem_gem_gem/version.rb</span><br><span class="line">      create  gem_gem_gem/gem_gem_gem.gemspec</span><br><span class="line">      create  gem_gem_gem/Rakefile</span><br><span class="line">      create  gem_gem_gem/README.md</span><br><span class="line">      create  gem_gem_gem/bin/console</span><br><span class="line">      create  gem_gem_gem/bin/setup</span><br><span class="line">      create  gem_gem_gem/.travis.yml</span><br><span class="line">      create  gem_gem_gem/test/test_helper.rb</span><br><span class="line">      create  gem_gem_gem/test/gem_gem_gem_test.rb</span><br><span class="line">      create  gem_gem_gem/LICENSE.txt</span><br><span class="line">      create  gem_gem_gem/CODE_OF_CONDUCT.md</span><br><span class="line">Initializing git repo in /Users/kawasaki-atsushi/workspace/gem_gem_gem</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Gemに公開するために基本的な設定をしていきます。</li>
+</ul>
+<p>gemspecの雛形の<code>TODO</code>は全て変更しましょう。 (後々、Rubygemsにdeployするときに怒られるので)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"># gem_gem_gem.gemspec</span><br><span class="line">lib = File.expand_path(&apos;../lib&apos;, __FILE__)</span><br><span class="line">$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)</span><br><span class="line">require &apos;gem_gem_gem/version&apos;</span><br><span class="line"></span><br><span class="line">Gem::Specification.new do |spec|</span><br><span class="line">  spec.name          = &quot;gem_gem_gem&quot;</span><br><span class="line">  spec.version       = GemGemGem::VERSION</span><br><span class="line">  spec.authors       = [&quot;kawasaki-atsushi&quot;]</span><br><span class="line">  spec.email         = [&quot;kawasaki8910@gmail.com&quot;]</span><br><span class="line"></span><br><span class="line">  spec.summary       = %q&#123;test!test!&#125;</span><br><span class="line">  spec.description   = %q&#123;test!test!&#125;</span><br><span class="line">  spec.homepage      = &quot;http://example.com&quot;</span><br><span class="line">  spec.license       = &quot;MIT&quot;</span><br><span class="line"></span><br><span class="line">  # rubygemsに公開したくない場合は設定するけど今回はコメントアウト</span><br><span class="line">  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the &apos;allowed_push_host&apos;</span><br><span class="line">  # to allow pushing to a single host or delete this section to allow pushing to any host.</span><br><span class="line">  # if spec.respond_to?(:metadata)</span><br><span class="line">  #   spec.metadata[&apos;allowed_push_host&apos;] = &quot;TODO: Set to &apos;http://mygemserver.com&apos;&quot;</span><br><span class="line">  # else</span><br><span class="line">  #   raise &quot;RubyGems 2.0 or newer is required to protect against public gem pushes.&quot;</span><br><span class="line">  # end</span><br><span class="line"></span><br><span class="line">  spec.files         = `git ls-files -z`.split(&quot;\x0&quot;).reject &#123; |f| f.match(%r&#123;^(test|spec|features)/&#125;) &#125;</span><br><span class="line">  spec.bindir        = &quot;exe&quot;</span><br><span class="line">  spec.executables   = spec.files.grep(%r&#123;^exe/&#125;) &#123; |f| File.basename(f) &#125;</span><br><span class="line">  spec.require_paths = [&quot;lib&quot;]</span><br><span class="line"></span><br><span class="line">  # 依存Gemはここ</span><br><span class="line">  spec.add_development_dependency &quot;bundler&quot;, &quot;~&gt; 1.12&quot;</span><br><span class="line">  spec.add_development_dependency &quot;rake&quot;, &quot;~&gt; 10.0&quot;</span><br><span class="line">  spec.add_development_dependency &quot;minitest&quot;, &quot;~&gt; 5.0&quot;</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>ここで使用されたオプションは下記のファイルに保存されている<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.bundle/config</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>メインのファイルに仮のロジックをおきます</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># lib/gem_gem_gem.rb</span><br><span class="line">require &quot;gem_gem_gem/version&quot;</span><br><span class="line"></span><br><span class="line">module GemGemGem</span><br><span class="line">  # Your code goes here...</span><br><span class="line">  def self.gemgem</span><br><span class="line">    p &quot;GEM!!&quot;</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>実行テスト</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ bin/console</span><br><span class="line">irb(main):001:0&gt; GemGemGem.gemgem</span><br><span class="line">&quot;GEM!!&quot;</span><br><span class="line">=&gt; &quot;GEM!!&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Deploy</p>
+</li>
+</ul>
+<p>パッケージの作成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ rake build</span><br><span class="line">gem_gem_gem 0.1.0 built to pkg/gem_gem_gem-0.1.0.gem.</span><br></pre></td></tr></table></figure></p>
+<p>パッケージのデプロイ<br>※デプロイ前にパッケージはリモートにアップしてください。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ rake release</span><br><span class="line">gem_gem_gem 0.1.0 built to pkg/gem_gem_gem-0.1.0.gem.</span><br><span class="line">Tagged v0.1.0.</span><br><span class="line">Pushed git commits and tags.</span><br><span class="line">Pushed gem_gem_gem 0.1.0 to rubygems.org.</span><br></pre></td></tr></table></figure></p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
+<li><p>デプロイしたRubygemsの削除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ gem install gemcutter</span><br><span class="line">$ gem yank -v 0.1.0 gem_sample</span><br><span class="line">Yanking gem from https://rubygems.org...</span><br><span class="line">Successfully deleted gem: gem_sample (0.1.0)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Gemの名前が重複するとデプロイできないので注意</p>
+</li>
+<li><p>Gem名のハイフンは名前空間になるので注意<br>ハイフンとアンダースコアの使い分け<br><a href="http://ackintosh.github.io/blog/2013/08/11/hypen-under-score/" target="_blank" rel="external">http://ackintosh.github.io/blog/2013/08/11/hypen-under-score/</a></p>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>bundle gemのオプション<br><a href="http://docs.komagata.org/5275" target="_blank" rel="external">http://docs.komagata.org/5275</a></p>
+<p>Removing a published RubyGem<br><a href="http://help.rubygems.org/kb/gemcutter/removing-a-published-rubygem" target="_blank" rel="external">http://help.rubygems.org/kb/gemcutter/removing-a-published-rubygem</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://pocke777.github.io/2016/06/20/cook-rubygems/" data-id="cipmqykhc0000f620er8hgv4a" class="article-share-link">Delen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gem/">gem</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/19/rails-usefull-methods/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">Ruby on Rails useful methods</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atom/">Atom</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Methods/">Methods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSX/">OSX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSS/">RSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Troubleshooting/">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boolean/">boolean</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/develop/">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gem/">gem</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Atom/" style="font-size: 10px;">Atom</a> <a href="/tags/Methods/" style="font-size: 10px;">Methods</a> <a href="/tags/OSX/" style="font-size: 10px;">OSX</a> <a href="/tags/RSS/" style="font-size: 10px;">RSS</a> <a href="/tags/Ruby-on-Rails/" style="font-size: 20px;">Ruby on Rails</a> <a href="/tags/Troubleshooting/" style="font-size: 10px;">Troubleshooting</a> <a href="/tags/boolean/" style="font-size: 10px;">boolean</a> <a href="/tags/develop/" style="font-size: 10px;">develop</a> <a href="/tags/gem/" style="font-size: 10px;">gem</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/20/cook-rubygems/">Rubygems の作成から公開まで</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/19/rails-usefull-methods/">Ruby on Rails useful methods</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/16/mac-Too-many-open-files/">Get Error with Too-many-open-files</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/14/rails-boolean-validation/">【Ruby on Rails】boolean型のカラムに必須制約を付ける方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/14/rails-rss/">RSS 2.0 feed in Ruby on Rails</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Pocke777<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
