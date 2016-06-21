@@ -17,7 +17,7 @@ Remove
 Remove
 
 12345&amp;#123;&amp;quot;1&amp;quot; =&amp;gt; &amp;quot;one&amp;quot;, &amp;quot;2&amp;quot; =&amp;gt; &amp;quot;two&amp;quot;, &amp;quot;3&amp;quot; =&amp;gt; &amp;quot;three&amp;quot;&amp;#125;.slice(&amp;quot;3&amp;quot;)=&amp;gt; &amp;#123;&amp;quot;3&amp;quot;=&amp;gt;&amp;quot;th">
-<meta property="og:updated_time" content="2016-06-19T14:41:27.000Z">
+<meta property="og:updated_time" content="2016-06-20T03:37:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ruby on Rails useful methods">
 <meta name="twitter:description" content="Hash
@@ -63,7 +63,7 @@ Remove
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://pocke777.github.io"></form>
@@ -117,11 +117,15 @@ Remove
 <li><code>.to_s(:db)</code> には注意<br>それぞれ、タイムゾーンの違いに注意してください。<br>特にActiveRecordを使った際など<code>created_at</code>はTimeWithZoneになるため、<br>期待した挙動と変わる。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Time.now.to_s(:db)</span><br><span class="line">=&gt; &quot;2016-06-19 21:14:41&quot;</span><br><span class="line">Time.zone.now.to_s(:db)</span><br><span class="line">=&gt; &quot;2016-06-19 12:15:00&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><ul>
+<li>Remove</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[&quot;ja&quot;, &quot;ja&quot;, &quot;en&quot;].delete_if &#123; |i| i == &quot;ja&quot; &#125;</span><br><span class="line">=&gt; [&quot;en&quot;]</span><br><span class="line"></span><br><span class="line">[&quot;ja&quot;, &quot;ja&quot;, &quot;en&quot;].reject &#123; |i| i == &quot;ja&quot; &#125;</span><br><span class="line">=&gt; [&quot;en&quot;]</span><br><span class="line"></span><br><span class="line">[&quot;ja&quot;, &quot;ja&quot;, &quot;en&quot;].reject! &#123; |i| i == &quot;ja&quot; &#125;</span><br><span class="line">=&gt; [&quot;en&quot;]</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pocke777.github.io/2016/06/19/rails-usefull-methods/" data-id="cipmpbcgz0005x5209bndojut" class="article-share-link">Delen</a>
+      <a data-url="http://pocke777.github.io/2016/06/19/rails-usefull-methods/" data-id="ciposovmc000ejb20ti6p53y3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Methods/">Methods</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/develop/">develop</a></li></ul>
@@ -133,7 +137,7 @@ Remove
 <nav id="article-nav">
   
     <a href="/2016/06/20/cook-rubygems/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nieuwer</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           Rubygems の作成から公開まで
@@ -143,7 +147,7 @@ Remove
   
   
     <a href="/2016/06/16/mac-Too-many-open-files/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Get Error with Too-many-open-files</div>
     </a>
   
@@ -161,7 +165,7 @@ Remove
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atom/">Atom</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Methods/">Methods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSX/">OSX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSS/">RSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Troubleshooting/">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boolean/">boolean</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/develop/">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gem/">gem</a></li></ul>
     </div>
@@ -180,7 +184,7 @@ Remove
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li></ul>
     </div>
@@ -190,9 +194,13 @@ Remove
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/06/21/rails-routing-redirect/">Rails redirect with query parameters in routes</a>
+          </li>
         
           <li>
             <a href="/2016/06/20/cook-rubygems/">Rubygems の作成から公開まで</a>
@@ -208,10 +216,6 @@ Remove
         
           <li>
             <a href="/2016/06/14/rails-boolean-validation/">【Ruby on Rails】boolean型のカラムに必須制約を付ける方法</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/14/rails-rss/">RSS 2.0 feed in Ruby on Rails</a>
           </li>
         
       </ul>

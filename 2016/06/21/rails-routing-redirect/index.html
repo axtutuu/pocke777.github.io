@@ -3,99 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>My First Post | となりのPocke</title>
+  <title>Rails redirect with query parameters in routes | となりのPocke</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="引用
-
-引用引用引用
-
-コードブロック
-1pust &amp;quot;hogehog&amp;quot;
-リスト
-
-
-hoge
-
-
-
-fuga
-
-
-
-
-
-
-table
-table
-
-
-
-
-table
-table">
+  <meta name="description" content="Redirect with query parameter123456789get &amp;quot;/hoge&amp;quot;, to: redirect &amp;#123; |params, request|                                  parameters = request.params                                  hash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="My First Post">
-<meta property="og:url" content="http://pocke777.github.io/2016/06/12/My-First-Post/index.html">
+<meta property="og:title" content="Rails redirect with query parameters in routes">
+<meta property="og:url" content="http://pocke777.github.io/2016/06/21/rails-routing-redirect/index.html">
 <meta property="og:site_name" content="となりのPocke">
-<meta property="og:description" content="引用
-
-引用引用引用
-
-コードブロック
-1pust &amp;quot;hogehog&amp;quot;
-リスト
-
-
-hoge
-
-
-
-fuga
-
-
-
-
-
-
-table
-table
-
-
-
-
-table
-table">
-<meta property="og:updated_time" content="2016-06-12T09:21:40.000Z">
+<meta property="og:description" content="Redirect with query parameter123456789get &amp;quot;/hoge&amp;quot;, to: redirect &amp;#123; |params, request|                                  parameters = request.params                                  hash">
+<meta property="og:updated_time" content="2016-06-21T01:51:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My First Post">
-<meta name="twitter:description" content="引用
-
-引用引用引用
-
-コードブロック
-1pust &amp;quot;hogehog&amp;quot;
-リスト
-
-
-hoge
-
-
-
-fuga
-
-
-
-
-
-
-table
-table
-
-
-
-
-table
-table">
+<meta name="twitter:title" content="Rails redirect with query parameters in routes">
+<meta name="twitter:description" content="Redirect with query parameter123456789get &amp;quot;/hoge&amp;quot;, to: redirect &amp;#123; |params, request|                                  parameters = request.params                                  hash">
   
     <link rel="alternate" href="/atom.xml" title="となりのPocke" type="application/atom+xml">
   
@@ -144,10 +63,10 @@ table">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-My-First-Post" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-rails-routing-redirect" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/06/12/My-First-Post/" class="article-date">
-  <time datetime="2016-06-12T09:16:47.000Z" itemprop="datePublished">2016-06-12</time>
+    <a href="/2016/06/21/rails-routing-redirect/" class="article-date">
+  <time datetime="2016-06-21T01:51:19.000Z" itemprop="datePublished">2016-06-21</time>
 </a>
     
   </div>
@@ -158,7 +77,7 @@ table">
         
   
     <h1 class="article-title" itemprop="name">
-      My First Post
+      Rails redirect with query parameters in routes
     </h1>
   
 
@@ -166,63 +85,34 @@ table">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>引用</p>
-<blockquote>
-<p>引用<br>引用<br>引用</p>
-</blockquote>
-<p>コードブロック</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pust &quot;hogehog&quot;</span><br></pre></td></tr></table></figure>
-<p>リスト</p>
+        <h2 id="Redirect-with-query-parameter"><a href="#Redirect-with-query-parameter" class="headerlink" title="Redirect with query parameter"></a>Redirect with query parameter</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">get &quot;/hoge&quot;, to: redirect &#123; |params, request|</span><br><span class="line">                                  parameters = request.params</span><br><span class="line">                                  hash   =</span><br><span class="line">                                    &#123;</span><br><span class="line">                                      hoge: parameters[:hoge],</span><br><span class="line">                                      fuga: parameters[:fuga]</span><br><span class="line">                                    &#125;</span><br><span class="line">                                 &quot;/fuga?#&#123;hash.to_query&#125;&quot;</span><br><span class="line">                               &#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><ol>
-<li>hoge</li>
-</ol>
-</li>
-<li><ol>
-<li>fuga</li>
-</ol>
-</li>
+<li>Use params</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>table</th>
-<th>table</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>table</td>
-<td>table</td>
-</tr>
-</tbody>
-</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">get &quot;/hoge/:fuga&quot;, to: redirect &#123; |params, request|</span><br><span class="line">                                  hash   =</span><br><span class="line">                                    &#123;</span><br><span class="line">                                      hoge: params[:fuga]</span><br><span class="line">                                    &#125;</span><br><span class="line">                                 &quot;/fuga?#&#123;hash.to_query&#125;&quot;</span><br><span class="line">                               &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Other options</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">get &quot;/hoge/:fuga&quot;, to: redirect &#123; |params, request|</span><br><span class="line">                                  hash   =</span><br><span class="line">                                    &#123;</span><br><span class="line">                                      hoge: params[:fuga]</span><br><span class="line">                                    &#125;</span><br><span class="line">                                 &quot;/fuga?#&#123;hash.to_query&#125;&quot;</span><br><span class="line">                               &#125;,</span><br><span class="line">                               constraints: &#123;</span><br><span class="line">                                 fuga: /hoge|fuga/</span><br><span class="line">                               &#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pocke777.github.io/2016/06/12/My-First-Post/" data-id="ciposovle0004jb20i8eq5tbz" class="article-share-link">Share</a>
+      <a data-url="http://pocke777.github.io/2016/06/21/rails-routing-redirect/" data-id="ciposovlu0009jb20w0oc4rwy" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2016/06/14/rails-rss/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          RSS 2.0 feed in Ruby on Rails
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/06/12/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/06/20/cook-rubygems/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">Rubygems の作成から公開まで</div>
     </a>
   
 </nav>
