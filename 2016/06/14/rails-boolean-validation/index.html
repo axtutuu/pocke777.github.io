@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   <title>【Ruby on Rails】boolean型のカラムに必須制約を付ける方法 | となりのPocke</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width">
   <meta name="description" content="Bad1validates :boolean, presence: true
 ※boolean値でfalseが返ってきた時に必須制約がかかってしまうので登録できない
 Good1validates :boolean, inclusion: &amp;#123; in: [true, false] &amp;#125;">
@@ -22,90 +22,79 @@ Good1validates :boolean, inclusion: &amp;#123; in: [true, false] &amp;#125;">
 ※boolean値でfalseが返ってきた時に必須制約がかかってしまうので登録できない
 Good1validates :boolean, inclusion: &amp;#123; in: [true, false] &amp;#125;">
   
-    <link rel="alternate" href="/atom.xml" title="となりのPocke" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="となりのPocke" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
   <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
-
 </head>
-
 <body>
   <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">となりのPocke</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://pocke777.github.io"></form>
-      </div>
-    </div>
-  </div>
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">となりのPocke</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/">Home</a></li><li><a href="/archives">Archives</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://pocke777.github.io"></form>
+	</div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-rails-boolean-validation" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/06/14/rails-boolean-validation/" class="article-date">
+    <div id="main">
+      <article id="post-rails-boolean-validation" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2016/06/14/rails-boolean-validation/" class="article-date">
   <time datetime="2016-06-14T12:11:51.000Z" itemprop="datePublished">2016-06-14</time>
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+		</span>
+		<span class="meta-elements author">Pocke777</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
   
-    <h1 class="article-title" itemprop="name">
+    <h1 class="article-title entry-title" itemprop="name">
       【Ruby on Rails】boolean型のカラムに必須制約を付ける方法
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Bad"><a href="#Bad" class="headerlink" title="Bad"></a>Bad</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">validates :boolean, presence: true</span><br></pre></td></tr></table></figure>
+	</header>
+	<div class="entry-content">
+		
+    	<h2 id="Bad"><a href="#Bad" class="headerlink" title="Bad"></a>Bad</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">validates :boolean, presence: true</span><br></pre></td></tr></table></figure>
 <p>※boolean値でfalseが返ってきた時に必須制約がかかってしまうので登録できない</p>
 <h2 id="Good"><a href="#Good" class="headerlink" title="Good"></a>Good</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">validates :boolean, inclusion: &#123; in: [true, false] &#125;</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://pocke777.github.io/2016/06/14/rails-boolean-validation/" data-id="cipqf8xgz000ef420zv38qug9" class="article-share-link">Share</a>
-      
-      
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/boolean/">boolean</a></li></ul>
 
-    </footer>
-  </div>
-  
+			</span>
+		</div>
+	</footer>
+	
     
 <nav id="article-nav">
   
@@ -121,7 +110,11 @@ Good1validates :boolean, inclusion: &amp;#123; in: [true, false] &amp;#125;">
   
     <a href="/2016/06/14/rails-rss/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">RSS 2.0 feed in Ruby on Rails</div>
+      <div class="article-nav-title">
+        
+          RSS 2.0 feed in Ruby on Rails
+        
+      </div>
     </a>
   
 </nav>
@@ -129,104 +122,36 @@ Good1validates :boolean, inclusion: &amp;#123; in: [true, false] &amp;#125;">
   
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atom/">Atom</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Methods/">Methods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OSX/">OSX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSS/">RSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Troubleshooting/">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boolean/">boolean</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/develop/">develop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gem/">gem</a></li></ul>
+
+
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Atom/" style="font-size: 10px;">Atom</a> <a href="/tags/Methods/" style="font-size: 10px;">Methods</a> <a href="/tags/OSX/" style="font-size: 10px;">OSX</a> <a href="/tags/RSS/" style="font-size: 10px;">RSS</a> <a href="/tags/Ruby-on-Rails/" style="font-size: 20px;">Ruby on Rails</a> <a href="/tags/Troubleshooting/" style="font-size: 10px;">Troubleshooting</a> <a href="/tags/boolean/" style="font-size: 10px;">boolean</a> <a href="/tags/develop/" style="font-size: 10px;">develop</a> <a href="/tags/gem/" style="font-size: 10px;">gem</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/06/22/rails-touch/">Ruby on Rails Touch has_many association</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/21/rails-routing-redirect/">Rails redirect with query parameters in routes</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/20/cook-rubygems/">Rubygems の作成から公開まで</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/19/rails-usefull-methods/">Ruby on Rails useful methods</a>
-          </li>
-        
-          <li>
-            <a href="/2016/06/16/mac-Too-many-open-files/">Get Error with Too-many-open-files</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Pocke777<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:pocke777.github.io">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">となりのPocke</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2016 Pocke777<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 <script src="/js/script.js"></script>
-
   </div>
 </body>
 </html>
