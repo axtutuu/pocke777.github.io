@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>となりのPocke</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://pocke777.github.io/"/>
+  <updated>2016-06-22T05:15:45.000Z</updated>
+  <id>http://pocke777.github.io/</id>
+  
+  <author>
+    <name>Pocke777</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ruby on Rails Touch has_many association</title>
+    <link href="http://pocke777.github.io/2016/06/22/rails-touch/"/>
+    <id>http://pocke777.github.io/2016/06/22/rails-touch/</id>
+    <published>2016-06-22T05:15:45.000Z</published>
+    <updated>2016-06-22T05:15:45.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;What-about-touch-option&quot;&gt;&lt;a href=&quot;#What-about-touch-option&quot; class=&quot;headerlink&quot; title=&quot;What about touch option&quot;&gt;&lt;/a&gt;What about touch option&lt;/h2&gt;&lt;p&gt;Uploate association attributes (default updated_at)&lt;br&gt;&lt;a href=&quot;http://railsdoc.com/references/belongs_to&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://railsdoc.com/references/belongs_to&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Hello&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  belongs_to :hoge, touch: true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;end&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# then&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;UPDATE `hellos` SET `name` = &amp;apos;Hey&amp;apos;, `updated_at` = &amp;apos;2016-06-22 13:21:19&amp;apos; WHERE `hellos`.`id` = 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;UPDATE `hoges`  SET `hoges`.`updated_at` = &amp;apos;2016-06-22 13:21:19&amp;apos; WHERE `hoges`.`id` = 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Touch-to-has-many-association&quot;&gt;&lt;a href=&quot;#Touch-to-has-many-association&quot; class=&quot;headerlink&quot; title=&quot;Touch to has_many association&quot;&gt;&lt;/a&gt;Touch to has_many association&lt;/h2&gt;&lt;p&gt;use after save callback&lt;br&gt;&lt;a href=&quot;https://github.com/rails/rails/issues/8759&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/rails/rails/issues/8759&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Hoge&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  has_many :hellos&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  after_save -&amp;gt; &amp;#123; self.hellos.map(&amp;amp;:touch) &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;end&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# then&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;UPDATE `hoges`  SET `name` = &amp;apos;Hey&amp;apos;, `hoges`.`updated_at` = &amp;apos;2016-06-22 13:21:19&amp;apos; WHERE `hoges`.`id` = 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;UPDATE `hellos`  SET `hellos`.`updated_at` = &amp;apos;2016-06-22 13:21:19&amp;apos; WHERE `hellos`.`id` = 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;UPDATE `hellos`  SET `hellos`.`updated_at` = &amp;apos;2016-06-22 13:21:19&amp;apos; WHERE `hellos`.`id` = 2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;UPDATE `hellos`  SET `hellos`.`updated_at` = &amp;apos;2016-06-22 13:21:19&amp;apos; WHERE `hellos`.`id` = 3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;References&quot;&gt;&lt;a href=&quot;#References&quot; class=&quot;headerlink&quot; title=&quot;References&quot;&gt;&lt;/a&gt;References&lt;/h2&gt;&lt;p&gt;Callback - after_save&lt;br&gt;&lt;a href=&quot;http://apidock.com/rails/ActiveRecord/Callbacks/after_save&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://apidock.com/rails/ActiveRecord/Callbacks/after_save&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;What-about-touch-option&quot;&gt;&lt;a href=&quot;#What-about-touch-option&quot; class=&quot;headerlink&quot; title=&quot;What about touch option&quot;&gt;&lt;/a&gt;What about touch 
+    
+    </summary>
+    
+    
+      <category term="Ruby on Rails" scheme="http://pocke777.github.io/tags/Ruby-on-Rails/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Rails redirect with query parameters in routes</title>
+    <link href="http://pocke777.github.io/2016/06/21/rails-routing-redirect/"/>
+    <id>http://pocke777.github.io/2016/06/21/rails-routing-redirect/</id>
+    <published>2016-06-21T01:51:19.000Z</published>
+    <updated>2016-06-21T01:51:19.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Redirect-with-query-parameter&quot;&gt;&lt;a href=&quot;#Redirect-with-query-parameter&quot; class=&quot;headerlink&quot; title=&quot;Redirect with query parameter&quot;&gt;&lt;/a&gt;Redirect with query parameter&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;get &amp;quot;/hoge&amp;quot;, to: redirect &amp;#123; |params, request|&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                  parameters = request.params&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                  hash   =&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                      hoge: parameters[:hoge],&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                      fuga: parameters[:fuga]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                 &amp;quot;/fuga?#&amp;#123;hash.to_query&amp;#125;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                               &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;Use params&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;get &amp;quot;/hoge/:fuga&amp;quot;, to: redirect &amp;#123; |params, request|&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                  hash   =&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                      hoge: params[:fuga]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                 &amp;quot;/fuga?#&amp;#123;hash.to_query&amp;#125;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                               &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;Other options&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;get &amp;quot;/hoge/:fuga&amp;quot;, to: redirect &amp;#123; |params, request|&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                  hash   =&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                      hoge: params[:fuga]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                 &amp;quot;/fuga?#&amp;#123;hash.to_query&amp;#125;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                               &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                               constraints: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                 fuga: /hoge|fuga/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                               &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Redirect-with-query-parameter&quot;&gt;&lt;a href=&quot;#Redirect-with-query-parameter&quot; class=&quot;headerlink&quot; title=&quot;Redirect with query parameter&quot;&gt;&lt;/a
+    
+    </summary>
+    
+    
+      <category term="Ruby on Rails" scheme="http://pocke777.github.io/tags/Ruby-on-Rails/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Rubygems の作成から公開まで</title>
+    <link href="http://pocke777.github.io/2016/06/20/cook-rubygems/"/>
+    <id>http://pocke777.github.io/2016/06/20/cook-rubygems/</id>
+    <published>2016-06-19T15:27:30.000Z</published>
+    <updated>2016-06-19T15:27:30.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;はじめに&quot;&gt;&lt;a href=&quot;#はじめに&quot; class=&quot;headerlink&quot; title=&quot;はじめに&quot;&gt;&lt;/a&gt;はじめに&lt;/h2&gt;&lt;p&gt;今回公開したGem&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;郵便番号から住所検索&lt;/li&gt;
+&lt;li&gt;Rakeタスクで最新の郵便番号を取り込み&lt;/li&gt;
+&lt;li&gt;海外の郵便番号も欲しい &amp;lt;- まだ未対応&lt;br&gt;とのことなので今回のGemを作成&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;world_postal_codes&lt;br&gt;&lt;a href=&quot;https://rubygems.org/gems/world_postal_codes&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://rubygems.org/gems/world_postal_codes&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;手順&quot;&gt;&lt;a href=&quot;#手順&quot; class=&quot;headerlink&quot; title=&quot;手順&quot;&gt;&lt;/a&gt;手順&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;1.雛形の作成&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;雛形を作成するためにいつもはパッケージマネージャーで活躍するbundlerを使用します。&lt;br&gt;&lt;a href=&quot;http://bundler.io/v1.12/bundle_gem.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://bundler.io/v1.12/bundle_gem.html&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# 初回起動時は色々オプションを聞かれるので適当に答えましょう&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ bundle gem gem_gem_gem&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Creating gem &amp;apos;gem_gem_gem&amp;apos;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MIT License enabled in config&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Code of conduct enabled in config&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/Gemfile&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/.gitignore&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/lib/gem_gem_gem.rb&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/lib/gem_gem_gem/version.rb&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/gem_gem_gem.gemspec&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/Rakefile&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/README.md&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/bin/console&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/bin/setup&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/.travis.yml&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/test/test_helper.rb&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/test/gem_gem_gem_test.rb&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/LICENSE.txt&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      create  gem_gem_gem/CODE_OF_CONDUCT.md&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Initializing git repo in /Users/kawasaki-atsushi/workspace/gem_gem_gem&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;Gemに公開するために基本的な設定をしていきます。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;gemspecの雛形の&lt;code&gt;TODO&lt;/code&gt;は全て変更しましょう。 (後々、Rubygemsにdeployするときに怒られるので)&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# gem_gem_gem.gemspec&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;lib = File.expand_path(&amp;apos;../lib&amp;apos;, __FILE__)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;require &amp;apos;gem_gem_gem/version&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Gem::Specification.new do |spec|&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.name          = &amp;quot;gem_gem_gem&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.version       = GemGemGem::VERSION&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.authors       = [&amp;quot;kawasaki-atsushi&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.email         = [&amp;quot;kawasaki8910@gmail.com&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.summary       = %q&amp;#123;test!test!&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.description   = %q&amp;#123;test!test!&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.homepage      = &amp;quot;http://example.com&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.license       = &amp;quot;MIT&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  # rubygemsに公開したくない場合は設定するけど今回はコメントアウト&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the &amp;apos;allowed_push_host&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  # to allow pushing to a single host or delete this section to allow pushing to any host.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  # if spec.respond_to?(:metadata)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  #   spec.metadata[&amp;apos;allowed_push_host&amp;apos;] = &amp;quot;TODO: Set to &amp;apos;http://mygemserver.com&amp;apos;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  # else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  #   raise &amp;quot;RubyGems 2.0 or newer is required to protect against public gem pushes.&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  # end&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.files         = `git ls-files -z`.split(&amp;quot;\x0&amp;quot;).reject &amp;#123; |f| f.match(%r&amp;#123;^(test|spec|features)/&amp;#125;) &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.bindir        = &amp;quot;exe&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.executables   = spec.files.grep(%r&amp;#123;^exe/&amp;#125;) &amp;#123; |f| File.basename(f) &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.require_paths = [&amp;quot;lib&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  # 依存Gemはここ&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.add_development_dependency &amp;quot;bundler&amp;quot;, &amp;quot;~&amp;gt; 1.12&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.add_development_dependency &amp;quot;rake&amp;quot;, &amp;quot;~&amp;gt; 10.0&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  spec.add_development_dependency &amp;quot;minitest&amp;quot;, &amp;quot;~&amp;gt; 5.0&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;end&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;ここで使用されたオプションは下記のファイルに保存されている&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cat ~/.bundle/config&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;メインのファイルに仮のロジックをおきます&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# lib/gem_gem_gem.rb&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;require &amp;quot;gem_gem_gem/version&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;module GemGemGem&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  # Your code goes here...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  def self.gemgem&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    p &amp;quot;GEM!!&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  end&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;end&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;実行テスト&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ bin/console&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;irb(main):001:0&amp;gt; GemGemGem.gemgem&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;quot;GEM!!&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;quot;GEM!!&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Deploy&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;パッケージの作成&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ rake build&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gem_gem_gem 0.1.0 built to pkg/gem_gem_gem-0.1.0.gem.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;パッケージのデプロイ&lt;br&gt;※デプロイ前にパッケージはリモートにアップしてください。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ rake release&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gem_gem_gem 0.1.0 built to pkg/gem_gem_gem-0.1.0.gem.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Tagged v0.1.0.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Pushed git commits and tags.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Pushed gem_gem_gem 0.1.0 to rubygems.org.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Tips&quot;&gt;&lt;a href=&quot;#Tips&quot; class=&quot;headerlink&quot; title=&quot;Tips&quot;&gt;&lt;/a&gt;Tips&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;デプロイしたRubygemsの削除&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ gem install gemcutter&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ gem yank -v 0.1.0 gem_sample&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Yanking gem from https://rubygems.org...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Successfully deleted gem: gem_sample (0.1.0)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Gemの名前が重複するとデプロイできないので注意&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Gem名のハイフンは名前空間になるので注意&lt;br&gt;ハイフンとアンダースコアの使い分け&lt;br&gt;&lt;a href=&quot;http://ackintosh.github.io/blog/2013/08/11/hypen-under-score/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://ackintosh.github.io/blog/2013/08/11/hypen-under-score/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;p&gt;bundle gemのオプション&lt;br&gt;&lt;a href=&quot;http://docs.komagata.org/5275&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.komagata.org/5275&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Removing a published RubyGem&lt;br&gt;&lt;a href=&quot;http://help.rubygems.org/kb/gemcutter/removing-a-published-rubygem&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://help.rubygems.org/kb/gemcutter/removing-a-published-rubygem&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;はじめに&quot;&gt;&lt;a href=&quot;#はじめに&quot; class=&quot;headerlink&quot; title=&quot;はじめに&quot;&gt;&lt;/a&gt;はじめに&lt;/h2&gt;&lt;p&gt;今回公開したGem&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;郵便番号から住所検索&lt;/li&gt;
+&lt;li&gt;Rakeタスクで最新の郵便番号を取り込
+    
+    </summary>
+    
+    
+      <category term="Ruby on Rails" scheme="http://pocke777.github.io/tags/Ruby-on-Rails/"/>
+    
+      <category term="gem" scheme="http://pocke777.github.io/tags/gem/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ruby on Rails useful methods</title>
+    <link href="http://pocke777.github.io/2016/06/19/rails-usefull-methods/"/>
+    <id>http://pocke777.github.io/2016/06/19/rails-usefull-methods/</id>
+    <published>2016-06-19T14:41:27.000Z</published>
+    <updated>2016-06-20T03:37:25.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Hash&quot;&gt;&lt;a href=&quot;#Hash&quot; class=&quot;headerlink&quot; title=&quot;Hash&quot;&gt;&lt;/a&gt;Hash&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Remove&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&amp;quot;1&amp;quot; =&amp;gt; &amp;quot;one&amp;quot;, &amp;quot;2&amp;quot; =&amp;gt; &amp;quot;two&amp;quot;, &amp;quot;3&amp;quot; =&amp;gt; &amp;quot;three&amp;quot;&amp;#125;.slice(&amp;quot;3&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;#123;&amp;quot;3&amp;quot;=&amp;gt;&amp;quot;three&amp;quot;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&amp;quot;1&amp;quot; =&amp;gt; &amp;quot;one&amp;quot;, &amp;quot;2&amp;quot; =&amp;gt; &amp;quot;two&amp;quot;, &amp;quot;3&amp;quot; =&amp;gt; &amp;quot;three&amp;quot;&amp;#125;.except(&amp;quot;3&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;#123;&amp;quot;1&amp;quot;=&amp;gt;&amp;quot;one&amp;quot;, &amp;quot;2&amp;quot;=&amp;gt;&amp;quot;two&amp;quot;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;String&quot;&gt;&lt;a href=&quot;#String&quot; class=&quot;headerlink&quot; title=&quot;String&quot;&gt;&lt;/a&gt;String&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;To snake case&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;quot;HelloWorld&amp;quot;.underscore&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;quot;hello_world&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;quot;hello_world&amp;quot;.camelize&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;quot;HelloWorld&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;To object&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;quot;HelloWorld&amp;quot;.constantize&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; HelloWorld&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;plural form &amp;lt;=&amp;gt; singular form&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;quot;hello_world&amp;quot;.pluralize&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;quot;hello_worlds&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;quot;hello_worlds&amp;quot;.singularize&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;quot;hello_world&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;文字列パディング&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;6.to_s.rjust(2, &amp;quot;0&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;quot;06&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6.to_s.ljust(2, &amp;quot;0&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;quot;60&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6.to_s.center(4, &amp;quot;0&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;quot;0600&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.to_s(:db)&lt;/code&gt; には注意&lt;br&gt;それぞれ、タイムゾーンの違いに注意してください。&lt;br&gt;特にActiveRecordを使った際など&lt;code&gt;created_at&lt;/code&gt;はTimeWithZoneになるため、&lt;br&gt;期待した挙動と変わる。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Time.now.to_s(:db)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;quot;2016-06-19 21:14:41&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Time.zone.now.to_s(:db)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; &amp;quot;2016-06-19 12:15:00&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;Array&quot;&gt;&lt;a href=&quot;#Array&quot; class=&quot;headerlink&quot; title=&quot;Array&quot;&gt;&lt;/a&gt;Array&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Remove&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[&amp;quot;ja&amp;quot;, &amp;quot;ja&amp;quot;, &amp;quot;en&amp;quot;].delete_if &amp;#123; |i| i == &amp;quot;ja&amp;quot; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; [&amp;quot;en&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[&amp;quot;ja&amp;quot;, &amp;quot;ja&amp;quot;, &amp;quot;en&amp;quot;].reject &amp;#123; |i| i == &amp;quot;ja&amp;quot; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; [&amp;quot;en&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[&amp;quot;ja&amp;quot;, &amp;quot;ja&amp;quot;, &amp;quot;en&amp;quot;].reject! &amp;#123; |i| i == &amp;quot;ja&amp;quot; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt; [&amp;quot;en&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Hash&quot;&gt;&lt;a href=&quot;#Hash&quot; class=&quot;headerlink&quot; title=&quot;Hash&quot;&gt;&lt;/a&gt;Hash&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Remove&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table
+    
+    </summary>
+    
+    
+      <category term="Ruby on Rails" scheme="http://pocke777.github.io/tags/Ruby-on-Rails/"/>
+    
+      <category term="Methods" scheme="http://pocke777.github.io/tags/Methods/"/>
+    
+      <category term="develop" scheme="http://pocke777.github.io/tags/develop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Get Error with Too-many-open-files</title>
+    <link href="http://pocke777.github.io/2016/06/16/mac-Too-many-open-files/"/>
+    <id>http://pocke777.github.io/2016/06/16/mac-Too-many-open-files/</id>
+    <published>2016-06-16T05:28:16.000Z</published>
+    <updated>2016-06-16T05:28:16.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Find-Too-many-open-files&quot;&gt;&lt;a href=&quot;#Find-Too-many-open-files&quot; class=&quot;headerlink&quot; title=&quot;Find Too-many-open-files&quot;&gt;&lt;/a&gt;Find Too-many-open-files&lt;/h2&gt;&lt;p&gt;&lt;code&gt;rspec&lt;/code&gt; や &lt;code&gt;minitest&lt;/code&gt; を回すときにたまに遭遇する&lt;code&gt;Too-many-open-files&lt;/code&gt;&lt;br&gt;ファイルディスクリプタの上限数に達していることが原因&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# テストコケまくり!! と思いきや failしている&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;HogeTest&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  #POST/hoge&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Errno::EMFILE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Too many open files - getcwd&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;FugaTest&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  InvalidValue&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Errno::EMFILE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Too many open files - getcwd&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 現在のファイルリミット数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ launchctl limit maxfiles&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;maxfiles    256            unlimited&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# オープンファイルをプロセスごとに一覧化&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ lsof | awk &amp;apos;&amp;#123;print $1, $2&amp;#125;&amp;apos; | sort | uniq -c | sort -rn&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1705 duet 70485&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1077 Google 838&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 576 Dock 619&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 299 Google 731&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 299 Dropbox 711&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 298 Finder 623&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 237 SIMBL\x20 645&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 204 mysqld 41836&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 177 AppleSpel 5393&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 153 iTerm 15385&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;Fix&quot;&gt;&lt;a href=&quot;#Fix&quot; class=&quot;headerlink&quot; title=&quot;Fix&quot;&gt;&lt;/a&gt;Fix&lt;/h2&gt;&lt;p&gt;一時的にlimit数を引き上げる&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ ulimit -n 1024&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 設定画変更されていることを確認&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ ulimit -n&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1024&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;Reference&quot;&gt;&lt;a href=&quot;#Reference&quot; class=&quot;headerlink&quot; title=&quot;Reference&quot;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://docs.basho.com/riak/kv/2.1.4/using/performance/open-files-limit/#mac-os-x&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://docs.basho.com/riak/kv/2.1.4/using/performance/open-files-limit/#mac-os-x&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Find-Too-many-open-files&quot;&gt;&lt;a href=&quot;#Find-Too-many-open-files&quot; class=&quot;headerlink&quot; title=&quot;Find Too-many-open-files&quot;&gt;&lt;/a&gt;Find Too-many-
+    
+    </summary>
+    
+    
+      <category term="Troubleshooting" scheme="http://pocke777.github.io/tags/Troubleshooting/"/>
+    
+      <category term="OSX" scheme="http://pocke777.github.io/tags/OSX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Ruby on Rails】boolean型のカラムに必須制約を付ける方法</title>
+    <link href="http://pocke777.github.io/2016/06/14/rails-boolean-validation/"/>
+    <id>http://pocke777.github.io/2016/06/14/rails-boolean-validation/</id>
+    <published>2016-06-14T12:11:51.000Z</published>
+    <updated>2016-06-15T01:47:38.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Bad&quot;&gt;&lt;a href=&quot;#Bad&quot; class=&quot;headerlink&quot; title=&quot;Bad&quot;&gt;&lt;/a&gt;Bad&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;validates :boolean, presence: true&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;※boolean値でfalseが返ってきた時に必須制約がかかってしまうので登録できない&lt;/p&gt;
+&lt;h2 id=&quot;Good&quot;&gt;&lt;a href=&quot;#Good&quot; class=&quot;headerlink&quot; title=&quot;Good&quot;&gt;&lt;/a&gt;Good&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;validates :boolean, inclusion: &amp;#123; in: [true, false] &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Bad&quot;&gt;&lt;a href=&quot;#Bad&quot; class=&quot;headerlink&quot; title=&quot;Bad&quot;&gt;&lt;/a&gt;Bad&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;s
+    
+    </summary>
+    
+    
+      <category term="Ruby on Rails" scheme="http://pocke777.github.io/tags/Ruby-on-Rails/"/>
+    
+      <category term="boolean" scheme="http://pocke777.github.io/tags/boolean/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RSS 2.0 feed in Ruby on Rails</title>
+    <link href="http://pocke777.github.io/2016/06/14/rails-rss/"/>
+    <id>http://pocke777.github.io/2016/06/14/rails-rss/</id>
+    <published>2016-06-13T16:15:04.000Z</published>
+    <updated>2016-06-13T16:18:04.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;RSS-2-0&quot;&gt;&lt;a href=&quot;#RSS-2-0&quot; class=&quot;headerlink&quot; title=&quot;RSS 2.0&quot;&gt;&lt;/a&gt;RSS 2.0&lt;/h3&gt;&lt;p&gt;Rss Feed Example for posts &lt;a href=&quot;http://www.rssboard.org/rss-profile&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;more infomation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Use xml builder Create file with &lt;code&gt;app/views/feed.rss.builder&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;feed_default_options = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;quot;version&amp;quot;    =&amp;gt; &amp;quot;2.0&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;quot;xmlns:dc&amp;quot;   =&amp;gt; &amp;quot;http://purl.org/dc/elements/1.1/&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;quot;xmlns:atom&amp;quot; =&amp;gt; &amp;quot;http://www.w3.org/2005/Atom&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;site_url = &amp;quot;example.com&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;atom_link_options = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  href: URI.join(site_url, &amp;quot;rss&amp;quot;).to_s,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  rel:  &amp;quot;self&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  type: &amp;quot;application/rss+xml&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xml.instruct!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xml.rss feed_default_options do&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  xml.channel do&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xml.title       &amp;quot;title&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xml.link        site_url&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xml.pubDate     Time.now.to_s(:rfc822)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xml.description &amp;quot;description&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xml.atom        :link, atom_link_options&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @items.each do |item|&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      xml.item do&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        xml.title       item.title&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        xml.link        item.feed_url&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        xml.guid        item.feed_url&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        xml.description item.feed_description&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        xml.pubDate     item.feed_published_at.to_s(:rfc822)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        xml.category    item.feed_category&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      end&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    end&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  end&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;end&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;add-auto-discovery-link-in-lt-head-gt&quot;&gt;&lt;a href=&quot;#add-auto-discovery-link-in-lt-head-gt&quot; class=&quot;headerlink&quot; title=&quot;add auto discovery link in &amp;lt;head&amp;gt;&quot;&gt;&lt;/a&gt;add auto discovery link in &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;= auto_discovery_link_tag rss_path&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;last-check-url-xml-with-validator&quot;&gt;&lt;a href=&quot;#last-check-url-xml-with-validator&quot; class=&quot;headerlink&quot; title=&quot;last check url xml with validator&quot;&gt;&lt;/a&gt;last check url xml with validator&lt;/h3&gt;&lt;p&gt;validator.w3.org&lt;br&gt;&lt;a href=&quot;https://validator.w3.org/feed/check.cgi&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://validator.w3.org/feed/check.cgi&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Reference&quot;&gt;&lt;a href=&quot;#Reference&quot; class=&quot;headerlink&quot; title=&quot;Reference&quot;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;RSS feed in Ruby on Rails&lt;br&gt;&lt;a href=&quot;http://crabonature.pl/posts/18-rss-feed-in-ruby-on-rails&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://crabonature.pl/posts/18-rss-feed-in-ruby-on-rails&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Atom 1.0 のフォーマット&lt;br&gt;&lt;a href=&quot;http://phpjavascriptroom.com/?t=topic&amp;amp;p=atom_format&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://phpjavascriptroom.com/?t=topic&amp;amp;p=atom_format&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Rails で Atom / RSS フィードを生成する Builder テンプレート&lt;br&gt;&lt;a href=&quot;http://webos-goodies.jp/archives/builder_templates_for_atom_and_rss_feeds.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://webos-goodies.jp/archives/builder_templates_for_atom_and_rss_feeds.html&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;RSS-2-0&quot;&gt;&lt;a href=&quot;#RSS-2-0&quot; class=&quot;headerlink&quot; title=&quot;RSS 2.0&quot;&gt;&lt;/a&gt;RSS 2.0&lt;/h3&gt;&lt;p&gt;Rss Feed Example for posts &lt;a href=&quot;http://www.rss
+    
+    </summary>
+    
+    
+      <category term="Ruby on Rails" scheme="http://pocke777.github.io/tags/Ruby-on-Rails/"/>
+    
+      <category term="RSS" scheme="http://pocke777.github.io/tags/RSS/"/>
+    
+      <category term="Atom" scheme="http://pocke777.github.io/tags/Atom/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>My First Post</title>
+    <link href="http://pocke777.github.io/2016/06/12/My-First-Post/"/>
+    <id>http://pocke777.github.io/2016/06/12/My-First-Post/</id>
+    <published>2016-06-12T09:16:47.000Z</published>
+    <updated>2016-06-12T09:21:40.000Z</updated>
+    
+    <content type="html">&lt;p&gt;引用&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;引用&lt;br&gt;引用&lt;br&gt;引用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;コードブロック&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pust &amp;quot;hogehog&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;リスト&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;hoge&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ol&gt;
+&lt;li&gt;fuga&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;table&lt;/th&gt;
+&lt;th&gt;table&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;table&lt;/td&gt;
+&lt;td&gt;table&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;引用&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;引用&lt;br&gt;引用&lt;br&gt;引用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;コードブロック&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://pocke777.github.io/2016/06/12/hello-world/"/>
+    <id>http://pocke777.github.io/2016/06/12/hello-world/</id>
+    <published>2016-06-12T08:47:54.000Z</published>
+    <updated>2016-06-12T08:47:54.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
