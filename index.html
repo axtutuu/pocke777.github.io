@@ -47,6 +47,59 @@
     <div id="main">
       
   
+    <article id="post-rails-field-order" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2016/06/24/rails-field-order/" class="article-date">
+  <time datetime="2016-06-24T06:20:08.000Z" itemprop="datePublished">2016-06-24</time>
+</a>
+		</span>
+		<span class="meta-elements author">Pocke777</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2016/06/24/rails-field-order/">How to use ORDER BY FIELD with Rails</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h2 id="Case"><a href="#Case" class="headerlink" title="Case"></a>Case</h2><ul>
+<li>when sort with array ids</li>
+</ul>
+<p>Example<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ids = [1,2,3]</span><br><span class="line">=&gt; [1, 2, 3]</span><br><span class="line">Hello.where(id: ids).order([&quot;field(id, #&#123;ids.join(&quot;,&quot;)&#125;)&quot;]).to_sql</span><br><span class="line">=&gt; &quot;SELECT `hellos`.* FROM `hello` WHERE `hello`.`id` IN (1, 2, 3)  ORDER BY field(id, 1,2,3)&quot;</span><br><span class="line"></span><br><span class="line"># Better</span><br><span class="line">query = Mysql2::Client.escape(&quot;field(id, #&#123;ids.join(&quot;,&quot;)&#125;)&quot;)</span><br><span class="line">=&gt; &quot;field(id, 1,2,3)&quot;</span><br><span class="line"></span><br><span class="line">Hello.where(id: ids).order(query).to_sql</span><br><span class="line">=&gt; &quot;SELECT `hellos`.* FROM `hello` WHERE `hello`.`id` IN (1, 2, 3)  ORDER BY field(id, 1,2,3)&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://qiita.com/chezou/items/8c0481044c954c4bca3b" target="_blank" rel="external">http://qiita.com/chezou/items/8c0481044c954c4bca3b</a></p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
     <article id="post-rails-touch" class="post">
 	<footer class="entry-meta-header">
 		<span class="meta-elements date">
