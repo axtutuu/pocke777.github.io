@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>validate-4byte | となりのPocke</title>
+  <title>How to validate 4byte char with utf-8 on Rails | となりのPocke</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description">
+  <meta name="description" content="Custom Validator of 4byte char1234567891011121314151617class 4byteCharValidator &amp;lt; ActiveModel::Validator  CHAR_TYPES = [:string, :text]  def validate(record)    klass        = record.class    colum">
 <meta property="og:type" content="article">
-<meta property="og:title" content="validate-4byte">
+<meta property="og:title" content="How to validate 4byte char with utf-8 on Rails">
 <meta property="og:url" content="http://pocke777.github.io/2016/06/29/validate-4byte/index.html">
 <meta property="og:site_name" content="となりのPocke">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-06-28T15:52:02.000Z">
+<meta property="og:description" content="Custom Validator of 4byte char1234567891011121314151617class 4byteCharValidator &amp;lt; ActiveModel::Validator  CHAR_TYPES = [:string, :text]  def validate(record)    klass        = record.class    colum">
+<meta property="og:updated_time" content="2016-06-28T15:54:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="validate-4byte">
-<meta name="twitter:description">
+<meta name="twitter:title" content="How to validate 4byte char with utf-8 on Rails">
+<meta name="twitter:description" content="Custom Validator of 4byte char1234567891011121314151617class 4byteCharValidator &amp;lt; ActiveModel::Validator  CHAR_TYPES = [:string, :text]  def validate(record)    klass        = record.class    colum">
   
     <link rel="alternative" href="/atom.xml" title="となりのPocke" type="application/atom+xml">
   
@@ -50,7 +50,7 @@
 	<footer class="entry-meta-header">
 		<span class="meta-elements date">
 			<a href="/2016/06/29/validate-4byte/" class="article-date">
-  <time datetime="2016-06-28T15:52:02.000Z" itemprop="datePublished">2016-06-29</time>
+  <time datetime="2016-06-28T15:54:46.000Z" itemprop="datePublished">2016-06-29</time>
 </a>
 		</span>
 		<span class="meta-elements author">Pocke777</span>
@@ -63,14 +63,17 @@
 		
   
     <h1 class="article-title entry-title" itemprop="name">
-      validate-4byte
+      How to validate 4byte char with utf-8 on Rails
     </h1>
   
 
 	</header>
 	<div class="entry-content">
 		
-    	
+    	<h2 id="Custom-Validator-of-4byte-char"><a href="#Custom-Validator-of-4byte-char" class="headerlink" title="Custom Validator of 4byte char"></a>Custom Validator of 4byte char</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class 4byteCharValidator &lt; ActiveModel::Validator</span><br><span class="line">  CHAR_TYPES = [:string, :text]</span><br><span class="line"></span><br><span class="line">  def validate(record)</span><br><span class="line">    klass        = record.class</span><br><span class="line">    columns      = klass.columns.select &#123; |c| CHAR_TYPES.include? c.type &#125;</span><br><span class="line">    char_columns = columns.map &#123; |c| c.name.to_sym &#125;</span><br><span class="line"></span><br><span class="line">    char_columns.each do |c|</span><br><span class="line">      next unless record.send(c).instance_of? String</span><br><span class="line"></span><br><span class="line">      unless record.send(c).match(/[^\u&#123;0&#125;-\u&#123;FFFF&#125;]/).nil?</span><br><span class="line">        record.errors.add(c, &quot;set error message&quot;)</span><br><span class="line">      end</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Point"><a href="#Point" class="headerlink" title="Point"></a>Point</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Get all columns of string or text type</span><br><span class="line">Hoge.columns.select &#123; |c| [:string, :text].include? c.type &#125;</span><br><span class="line"></span><br><span class="line"># Match only BMP characters</span><br><span class="line">&quot;string&quot;.match(/[^\u&#123;0&#125;-\u&#123;FFFF&#125;]/)</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Plane (Unicode)<br><a href="https://en.wikipedia.org/wiki/Plane_(Unicode" target="_blank" rel="external">https://en.wikipedia.org/wiki/Plane_(Unicode</a>)</p>
+
     
 	</div>
 	<footer class="entry-footer">
@@ -80,6 +83,8 @@
 			</span>
 			<span class="tags">
 				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li></ul>
+
 			</span>
 		</div>
 	</footer>
