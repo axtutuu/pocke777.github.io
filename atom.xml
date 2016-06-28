@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://pocke777.github.io/"/>
-  <updated>2016-06-27T14:56:19.000Z</updated>
+  <updated>2016-06-28T15:52:02.000Z</updated>
   <id>http://pocke777.github.io/</id>
   
   <author>
@@ -14,6 +14,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>validate-4byte</title>
+    <link href="http://pocke777.github.io/2016/06/29/validate-4byte/"/>
+    <id>http://pocke777.github.io/2016/06/29/validate-4byte/</id>
+    <published>2016-06-28T15:52:02.000Z</published>
+    <updated>2016-06-28T15:52:02.000Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Rails Fetch Url from Controller and Action Name</title>
