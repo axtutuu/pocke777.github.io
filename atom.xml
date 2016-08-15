@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://pocke777.github.io/"/>
-  <updated>2016-06-28T15:55:25.000Z</updated>
+  <updated>2016-08-15T14:46:30.000Z</updated>
   <id>http://pocke777.github.io/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Set RAILS_ENV with puma and capistrano3</title>
+    <link href="http://pocke777.github.io/2016/08/15/cap-puma-rails/"/>
+    <id>http://pocke777.github.io/2016/08/15/cap-puma-rails/</id>
+    <published>2016-08-15T14:43:56.000Z</published>
+    <updated>2016-08-15T14:46:30.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;doesn’t-work&quot;&gt;&lt;a href=&quot;#doesn’t-work&quot; class=&quot;headerlink&quot; title=&quot;doesn’t work&quot;&gt;&lt;/a&gt;doesn’t work&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;set :rails_env,      &amp;quot;staging&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;Try-this&quot;&gt;&lt;a href=&quot;#Try-this&quot; class=&quot;headerlink&quot; title=&quot;Try this&quot;&gt;&lt;/a&gt;Try this&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;set :default_env, &amp;#123; &amp;quot;RAILS_ENV&amp;quot; =&amp;gt; &amp;quot;staging&amp;quot; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;doesn’t-work&quot;&gt;&lt;a href=&quot;#doesn’t-work&quot; class=&quot;headerlink&quot; title=&quot;doesn’t work&quot;&gt;&lt;/a&gt;doesn’t work&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;
+    
+    </summary>
+    
+    
+      <category term="puma" scheme="http://pocke777.github.io/tags/puma/"/>
+    
+      <category term="capistrano3" scheme="http://pocke777.github.io/tags/capistrano3/"/>
+    
+  </entry>
   
   <entry>
     <title>How to validate 4byte char with utf-8 on Rails</title>
