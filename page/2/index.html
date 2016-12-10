@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>となりのPocke</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="となりのPocke">
+<meta property="og:url" content="http://pocke777.github.io/page/2/index.html">
+<meta property="og:site_name" content="となりのPocke">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="となりのPocke">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="となりのPocke" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">となりのPocke</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/">Home</a></li><li><a href="/archives">Archives</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://pocke777.github.io"></form>
+	</div>
+</header>
+    <div id="main">
+      
+  
+    <article id="post-rails-rss" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2016/06/14/rails-rss/" class="article-date">
+  <time datetime="2016-06-13T16:15:04.000Z" itemprop="datePublished">2016-06-14</time>
+</a>
+		</span>
+		<span class="meta-elements author">Pocke777</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2016/06/14/rails-rss/">RSS 2.0 feed in Ruby on Rails</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h3 id="RSS-2-0"><a href="#RSS-2-0" class="headerlink" title="RSS 2.0"></a>RSS 2.0</h3><p>Rss Feed Example for posts <a href="http://www.rssboard.org/rss-profile" target="_blank" rel="external">more infomation</a></p>
+<p>Use xml builder Create file with <code>app/views/feed.rss.builder</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">feed_default_options = &#123;</span><br><span class="line">  &quot;version&quot;    =&gt; &quot;2.0&quot;,</span><br><span class="line">  &quot;xmlns:dc&quot;   =&gt; &quot;http://purl.org/dc/elements/1.1/&quot;,</span><br><span class="line">  &quot;xmlns:atom&quot; =&gt; &quot;http://www.w3.org/2005/Atom&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">site_url = &quot;example.com&quot;</span><br><span class="line"></span><br><span class="line">atom_link_options = &#123;</span><br><span class="line">  href: URI.join(site_url, &quot;rss&quot;).to_s,</span><br><span class="line">  rel:  &quot;self&quot;,</span><br><span class="line">  type: &quot;application/rss+xml&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xml.instruct!</span><br><span class="line">xml.rss feed_default_options do</span><br><span class="line">  xml.channel do</span><br><span class="line">    xml.title       &quot;title&quot;</span><br><span class="line">    xml.link        site_url</span><br><span class="line">    xml.pubDate     Time.now.to_s(:rfc822)</span><br><span class="line">    xml.description &quot;description&quot;</span><br><span class="line">    xml.atom        :link, atom_link_options</span><br><span class="line"></span><br><span class="line">    @items.each do |item|</span><br><span class="line">      xml.item do</span><br><span class="line">        xml.title       item.title</span><br><span class="line">        xml.link        item.feed_url</span><br><span class="line">        xml.guid        item.feed_url</span><br><span class="line">        xml.description item.feed_description</span><br><span class="line">        xml.pubDate     item.feed_published_at.to_s(:rfc822)</span><br><span class="line">        xml.category    item.feed_category</span><br><span class="line">      end</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h3 id="add-auto-discovery-link-in-lt-head-gt"><a href="#add-auto-discovery-link-in-lt-head-gt" class="headerlink" title="add auto discovery link in &lt;head&gt;"></a>add auto discovery link in <code>&lt;head&gt;</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">= auto_discovery_link_tag rss_path</span><br></pre></td></tr></table></figure>
+<h3 id="last-check-url-xml-with-validator"><a href="#last-check-url-xml-with-validator" class="headerlink" title="last check url xml with validator"></a>last check url xml with validator</h3><p>validator.w3.org<br><a href="https://validator.w3.org/feed/check.cgi" target="_blank" rel="external">https://validator.w3.org/feed/check.cgi</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>RSS feed in Ruby on Rails<br><a href="http://crabonature.pl/posts/18-rss-feed-in-ruby-on-rails" target="_blank" rel="external">http://crabonature.pl/posts/18-rss-feed-in-ruby-on-rails</a></p>
+<p>Atom 1.0 のフォーマット<br><a href="http://phpjavascriptroom.com/?t=topic&amp;p=atom_format" target="_blank" rel="external">http://phpjavascriptroom.com/?t=topic&amp;p=atom_format</a></p>
+<p>Rails で Atom / RSS フィードを生成する Builder テンプレート<br><a href="http://webos-goodies.jp/archives/builder_templates_for_atom_and_rss_feeds.html" target="_blank" rel="external">http://webos-goodies.jp/archives/builder_templates_for_atom_and_rss_feeds.html</a></p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Atom/">Atom</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RSS/">RSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-My-First-Post" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2016/06/12/My-First-Post/" class="article-date">
+  <time datetime="2016-06-12T09:16:47.000Z" itemprop="datePublished">2016-06-12</time>
+</a>
+		</span>
+		<span class="meta-elements author">Pocke777</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2016/06/12/My-First-Post/">My First Post</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>引用</p>
+<blockquote>
+<p>引用<br>引用<br>引用</p>
+</blockquote>
+<p>コードブロック</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pust &quot;hogehog&quot;</span><br></pre></td></tr></table></figure>
+<p>リスト</p>
+<ul>
+<li><ol>
+<li>hoge</li>
+</ol>
+</li>
+<li><ol>
+<li>fuga</li>
+</ol>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>table</th>
+<th>table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>table</td>
+<td>table</td>
+</tr>
+</tbody>
+</table>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+    <article id="post-hello-world" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2016/06/12/hello-world/" class="article-date">
+  <time datetime="2016-06-12T08:47:54.000Z" itemprop="datePublished">2016-06-12</time>
+</a>
+		</span>
+		<span class="meta-elements author">Pocke777</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/2016/06/12/hello-world/">Hello World</a>
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+			</span>
+		</div>
+	</footer>
+	
+</article>
+
+
+	<hr class="article-devider">
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:pocke777.github.io">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">となりのPocke</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2016 Pocke777<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

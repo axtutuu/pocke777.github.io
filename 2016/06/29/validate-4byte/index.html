@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>How to validate 4byte char with utf-8 on Rails | となりのPocke</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Custom Validator of 4byte char1234567891011121314151617class 4byteCharValidator &amp;lt; ActiveModel::Validator  CHAR_TYPES = [:string, :text]  def validate(record)    klass        = record.class    colum">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to validate 4byte char with utf-8 on Rails">
+<meta property="og:url" content="http://pocke777.github.io/2016/06/29/validate-4byte/index.html">
+<meta property="og:site_name" content="となりのPocke">
+<meta property="og:description" content="Custom Validator of 4byte char1234567891011121314151617class 4byteCharValidator &amp;lt; ActiveModel::Validator  CHAR_TYPES = [:string, :text]  def validate(record)    klass        = record.class    colum">
+<meta property="og:updated_time" content="2016-06-28T15:55:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to validate 4byte char with utf-8 on Rails">
+<meta name="twitter:description" content="Custom Validator of 4byte char1234567891011121314151617class 4byteCharValidator &amp;lt; ActiveModel::Validator  CHAR_TYPES = [:string, :text]  def validate(record)    klass        = record.class    colum">
+  
+    <link rel="alternative" href="/atom.xml" title="となりのPocke" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">となりのPocke</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/">Home</a></li><li><a href="/archives">Archives</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://pocke777.github.io"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-validate-4byte" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2016/06/29/validate-4byte/" class="article-date">
+  <time datetime="2016-06-28T15:55:25.000Z" itemprop="datePublished">2016-06-29</time>
+</a>
+		</span>
+		<span class="meta-elements author">Pocke777</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      How to validate 4byte char with utf-8 on Rails
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h2 id="Custom-Validator-of-4byte-char"><a href="#Custom-Validator-of-4byte-char" class="headerlink" title="Custom Validator of 4byte char"></a>Custom Validator of 4byte char</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class 4byteCharValidator &lt; ActiveModel::Validator</span><br><span class="line">  CHAR_TYPES = [:string, :text]</span><br><span class="line"></span><br><span class="line">  def validate(record)</span><br><span class="line">    klass        = record.class</span><br><span class="line">    columns      = klass.columns.select &#123; |c| CHAR_TYPES.include? c.type &#125;</span><br><span class="line">    char_columns = columns.map &#123; |c| c.name.to_sym &#125;</span><br><span class="line"></span><br><span class="line">    char_columns.each do |c|</span><br><span class="line">      next unless record.send(c).instance_of? String</span><br><span class="line"></span><br><span class="line">      unless record.send(c).match(/[^\u&#123;0&#125;-\u&#123;FFFF&#125;]/).nil?</span><br><span class="line">        record.errors.add(c, &quot;set error message&quot;)</span><br><span class="line">      end</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Point"><a href="#Point" class="headerlink" title="Point"></a>Point</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Get all columns of string or text type</span><br><span class="line">Hoge.columns.select &#123; |c| [:string, :text].include? c.type &#125;</span><br><span class="line"></span><br><span class="line"># Match only BMP characters</span><br><span class="line">&quot;string&quot;.match(/[^\u&#123;0&#125;-\u&#123;FFFF&#125;]/)</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Plane (Unicode)<br><a href="https://en.wikipedia.org/wiki/Plane_(Unicode" target="_blank" rel="external">https://en.wikipedia.org/wiki/Plane_(Unicode</a>)</p>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby-on-Rails/">Ruby on Rails</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/15/cap-puma-rails/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Set RAILS_ENV with puma and capistrano3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/27/rails-routes/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Rails Fetch Url from Controller and Action Name
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:pocke777.github.io">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">となりのPocke</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2016 Pocke777<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
