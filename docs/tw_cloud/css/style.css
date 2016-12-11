@@ -1,0 +1,117 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+main, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+@-webkit-keyframes chikachika {
+  from {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; }
+  to {
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; } }
+@keyframes chikachika {
+  from {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; }
+  to {
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; } }
+
+@-webkit-keyframes slide {
+  from {
+    -webkit-transform: translate(100vw);
+            transform: translate(100vw); }
+  to {
+    -webkit-transform: translate(-100%);
+            transform: translate(-100%); } }
+
+@keyframes slide {
+  from {
+    -webkit-transform: translate(100vw);
+            transform: translate(100vw); }
+  to {
+    -webkit-transform: translate(-100%);
+            transform: translate(-100%); } }
+
+.wrapper {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.5; }
+
+.container {
+  position: relative;
+  background-color: #fff;
+  font-family: Futura, YuGothic, sans-serif;
+  font-size: 50px;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-size: 150px;
+  line-height: 100vh; }
+
+.countdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 200px; }
+
+.loading {
+  -webkit-animation: chikachika 1s infinite;
+          animation: chikachika 1s infinite; }
+  .loading.sugoi-animation {
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+    font-size: 80px;
+    -webkit-animation: slide 3s infinite;
+            animation: slide 3s infinite; }
+
+.answer {
+  font-size: 200px; }
