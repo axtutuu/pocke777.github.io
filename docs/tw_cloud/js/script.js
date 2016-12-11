@@ -19915,7 +19915,7 @@ function draw(words) {
 var words = [];
 _jquery2.default.ajax({
   type: 'GET',
-  url: "/data/tweets.json",
+  url: "/docs/tw_cloud/data/tweets.json",
   success: function success(data) {
     console.log("success");
     data.forEach(function (data, index, array) {
