@@ -83,8 +83,7 @@ table {
   .top__tw a {
     font-size: 80px;
     font-size: 5rem;
-    color: white;
-    text-decoration: none; }
+    color: white; }
 
 .top__copy {
   color: white;
@@ -101,8 +100,7 @@ table {
   padding: 4px 16px;
   margin: 16px 0px; }
   .top__home a {
-    color: white;
-    text-decoration: none; }
+    color: white; }
 
 @media (max-width: 767px) {
   html {
