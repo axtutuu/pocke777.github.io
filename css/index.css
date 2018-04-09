@@ -52,7 +52,8 @@ table {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%); }
+          transform: translate(-50%, -50%);
+  box-shadow: inset 0px 0px 18px 21px white; }
   @media (max-width: 767px) {
     .top__pockemon {
       width: 280px;

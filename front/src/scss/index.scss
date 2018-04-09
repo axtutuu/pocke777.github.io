@@ -10,6 +10,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: inset 0px 0px 18px 21px rgba(255,255,255,1);
 
     @include sp-layout {
       width: 280px;
