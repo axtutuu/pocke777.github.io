@@ -1,0 +1,15 @@
+extends /layout/_DefaultLayout
+prepend StylesheetBlock
+  link(rel="stylesheet", href="css/index.css")
+block ContentBlock
+  .top
+    canvas.top__pockemon(width="460" height="460")
+    .top__keyvisual
+      .top__content
+        span.top__tw
+          a(href="https://twitter.com/pickrusu" target="_blank") @pickrusu
+        span.top__copy Web Developer
+        span.top__home
+          a(href="/blog") Home
+prepend JavascriptBlock
+  script(src="js/index.js")

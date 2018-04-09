@@ -1,0 +1,53 @@
+.top__pockemon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+
+.top__keyvisual {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: saturate(180%) blur(5px); }
+
+.top__content {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: end;
+      -ms-flex-align: end;
+          align-items: end;
+  height: 100%; }
+
+.top__tw {
+  background-color: #ff3399;
+  margin: 21px 0px;
+  padding: 4px 16px; }
+  .top__tw a {
+    font-size: 80px;
+    font-size: 5rem;
+    color: white;
+    text-decoration: none; }
+
+.top__copy {
+  color: white;
+  font-size: 32px;
+  font-size: 2rem;
+  background-color: black;
+  padding: 4px 16px; }
+
+.top__home {
+  color: white;
+  font-size: 24px;
+  font-size: 1.5rem;
+  background-image: linear-gradient(90deg, #ff964b 0%, #ff417d 100%);
+  padding: 4px 16px;
+  margin: 16px 0px; }
+  .top__home a {
+    color: white;
+    text-decoration: none; }
