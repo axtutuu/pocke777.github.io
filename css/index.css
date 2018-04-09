@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -61,8 +62,8 @@ table {
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
-  -webkit-backdrop-filter: saturate(180%) blur(5px); }
+  -webkit-backdrop-filter: saturate(180%) blur(5px);
+  background-image: linear-gradient(135deg, #00bee1 0%, rgba(0, 240, 145, 0.25) 100%); }
 
 .top__content {
   display: -webkit-flex;
@@ -102,6 +103,8 @@ table {
   .top__home a {
     color: white; }
 
-@media (max-width: 767px) {
-  html {
-    font-size: 10px; } }
+html {
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", メイリオ, sans-serif; }
+  @media (max-width: 767px) {
+    html {
+      font-size: 10px; } }
