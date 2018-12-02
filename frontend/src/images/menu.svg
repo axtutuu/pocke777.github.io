@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="11px" viewBox="0 0 20 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>Navigation</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Portfolio-Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile" transform="translate(-30.000000, -81.000000)" fill="#007FFF" fill-rule="nonzero">
+            <path d="M31.5,81 L48.5,81 C49.3284271,81 50,81.6715729 50,82.5 C50,83.3284271 49.3284271,84 48.5,84 L31.5,84 C30.6715729,84 30,83.3284271 30,82.5 C30,81.6715729 30.6715729,81 31.5,81 Z M31.5,89 L48.5,89 C49.3284271,89 50,89.6715729 50,90.5 C50,91.3284271 49.3284271,92 48.5,92 L31.5,92 C30.6715729,92 30,91.3284271 30,90.5 C30,89.6715729 30.6715729,89 31.5,89 Z" id="Navigation"></path>
+        </g>
+    </g>
+</svg>

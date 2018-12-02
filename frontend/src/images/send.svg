@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>Send</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Portfolio-Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-1317.000000, -2895.000000)" fill="#FFFFFF">
+            <g id="Form" transform="translate(250.000000, 2787.000000)">
+                <g id="Button" transform="translate(1048.000000, 90.000000)">
+                    <path d="M20.4999831,18.1094084 L34.4269109,25.072964 C34.9388293,25.3289266 35.1463253,25.9514226 34.8903661,26.4633478 C34.7900882,26.6639062 34.6274667,26.8265298 34.4269109,26.926809 L20.4999831,33.8903646 C19.9880647,34.1463272 19.3655769,33.9388285 19.1096177,33.4269034 C18.9605867,33.1288374 18.9639832,32.7772881 19.1187456,32.4821574 L21.9745192,27.0362174 L29.026511,25.9998865 L21.9745192,24.9635557 L19.1187456,19.5176156 C18.8529429,19.0107317 19.0483724,18.3843426 19.5552496,18.1185364 C19.8503764,17.9637721 20.2019211,17.9603754 20.4999831,18.1094084 Z" id="Send"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

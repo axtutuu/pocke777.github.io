@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "strict": [2, "function"],
+    "no-undef": 2,
+    "no-console": 1,
+    "arrow-parens": [2, "always"],
+    "import/no-unresolved": 0,
+    "no-unused-vars": [1, {"vars": "all", "args": "after-used"}],
+    "semi": [1, "always"],
+    "semi-spacing": [1, {"after": true, "before": false}],
+    "semi-style": [1, "last"],
+    "vue/html-closing-bracket-newline": 0,
+    "vue/no-parsing-error": [1, { "x-invalid-end-tag": false }]
+  }
+}

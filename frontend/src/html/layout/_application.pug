@@ -1,0 +1,15 @@
+block config
+  - title = ''
+
+doctype html
+html(lang="ja" dir="ltr")
+  head
+    title 🐶
+    link(href='/assets/application.css' rel="stylesheet" media="all" type="text/css")
+    meta(name='viewport', content='width=device-width,initial-scale=1')
+  body
+    main.main
+      block content
+
+    block scripts
+      script(src="/assets/application.js")

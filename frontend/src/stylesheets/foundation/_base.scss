@@ -1,0 +1,76 @@
+// Noto Sans Japanese (japanese) http://www.google.com/fonts/earlyaccess
+@font-face {
+  font-family: 'Noto Sans Japanese';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Noto Sans CJK JP Light'),
+  local('Noto Sans Japanese Light'),
+  url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-DemiLight.woff2) format('woff2'),
+  url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-DemiLight.woff) format('woff'),
+  url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-DemiLight.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Japanese';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Noto Sans CJK JP Regular'),
+  local('Noto Sans Japanese Regular'),
+  url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Thin.woff2) format('woff2'),
+  url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Thin.woff) format('woff'),
+  url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Thin.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Japanese';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Noto Sans CJK JP Bold'),
+  local('Noto Sans Japanese Bold'),
+  url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Bold.woff2) format('woff2'),
+  url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Bold.woff) format('woff'),
+  url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Bold.otf) format('opentype');
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  height: 100%;
+  font-size: 1.6rem;
+  font-family: 'Noto Sans Japanese';
+  font-weight: 300;
+  color: $PRIMARY_BLACK;
+  line-height: 1.6;
+}
+
+input,
+select,
+option {
+  font-family: 'Noto Sans Japanese';
+  font-weight: 300;
+  outline: 0;
+  color: $PRIMARY_BLACK;
+}
+
+a {
+  text-decoration: none;
+  color: $PRIMARY_BLUE;
+}
+
+// sass-lint:disable no-qualifying-elements
+input[type='submit'] {
+  border: 0;
+  cursor: pointer;
+}
+
+// TODO: custom directive
+[data-visible='0'] {
+  visibility: hidden;
+}
