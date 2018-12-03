@@ -1,0 +1,17 @@
+.l-tags {
+  &:not(:root) {
+    display: flex;
+  }
+
+  & &__item {
+    background-color: #ffe300;
+    border-radius: 14px;
+    padding: 0 8px;
+    box-sizing: border-box;
+    color: black;
+    font-size: 1rem;
+    border-radius: 14px;
+    line-height: 22px;
+    height: 22px;
+  }
+}

@@ -70,7 +70,27 @@ input[type='submit'] {
   cursor: pointer;
 }
 
-// TODO: custom directive
-[data-visible='0'] {
-  visibility: hidden;
+@media (min-width: 768px) {
+  .only-sp {
+    display: none !important;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .only-pc {
+    display: none !important;
+  }
+}
+
+@mixin pc-layout {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin sp-layout {
+  @media (max-width: 767px) {
+    @content;
+  }
 }

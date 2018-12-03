@@ -1,0 +1,42 @@
+.l-hero {
+  &:not(:root) {
+    margin-top: 120px;
+
+    @include sp-layout {
+      margin-top: 80px;
+    }
+  }
+
+  & &__title {
+    width: 550px;
+    margin: 0 auto;
+    font-size: 48px;
+    text-align: center;
+    line-height: 1;
+    font-weight: 300;
+
+    @include sp-layout {
+      width: 95%;
+      font-size: 28px;
+      margin-top: 60px;
+    }
+  }
+
+  & &__highlight {
+    color: #007fff;
+  }
+
+  & &__icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+    @include sp-layout {
+      margin-top: 30px;
+    }
+  }
+
+  & &__icon {
+    margin: 0 16px;
+  }
+}

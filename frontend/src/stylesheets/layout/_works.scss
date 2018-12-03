@@ -1,0 +1,99 @@
+.l-works {
+
+  &:not(:root) {
+    width: 90%;
+    max-width: 1100px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 120px;
+
+    @include sp-layout {
+      margin: 80px auto 0;
+    }
+  }
+
+  & &__title {
+    color: #979797;
+    font-size: 1.2rem;
+    font-weight: 300;
+
+    @include pc-layout {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(-90deg) translateX(-30%);
+    }
+
+    @include sp-layout {
+      text-align:  center;
+    }
+  }
+
+  & &__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  & &__item {
+    width: 42%;
+    padding-top: 40%;
+    background: url(../images/works1.png) no-repeat center /contain;
+    color: white;
+    position: relative;
+    margin: 30px;
+
+    @include sp-layout {
+      width: 100%;
+      margin: 24px 0;
+      padding-top: 100%;
+    }
+  }
+
+  & &__item:nth-child(n-2) {
+    @include pc-layout {
+      margin-top: 0;
+    }
+  }
+
+  & &__item:nth-child(odd) {
+    @include pc-layout {
+      margin-left: 0;
+    }
+  }
+
+  & &__item:nth-child(even) {
+    @include pc-layout {
+      margin-right: 0;
+    }
+  }
+
+  & &__item:nth-child(2) {
+    background: url(../images/works2.png) no-repeat center /contain;
+  }
+
+  & &__item:nth-child(3) {
+    background: url(../images/works3.png) no-repeat center /contain;
+  }
+
+  & &__caption {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    width: 275px;
+
+    @include sp-layout {
+      width: 80%;
+    }
+  }
+
+  & &__label {
+    line-height: 1;
+    font-weight: 300;
+
+    @include sp-layout {
+      font-size: 1.8rem;
+    }
+  }
+}
