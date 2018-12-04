@@ -1,0 +1,87 @@
+.l-contact {
+  $block: &;
+
+  &:not(:root) {
+    width: 90%;
+    max-width: 1100px;
+    box-sizing: border-box;
+    margin: 120px auto 0;
+    position: relative;
+  }
+
+  & &__caption {
+    width: 230px;
+  }
+
+  & &__sns-icons {
+    display: flex;
+    margin-top: 30px;
+  }
+
+  & &__sns-icon:not(:first-child) {
+    margin-left: 30px;
+  }
+
+  & &__text {
+    display: block;
+    border: none;
+    border-bottom: 1px solid #cfcfcf;
+  }
+
+  & &__text::placeholder {
+    color: rgba(0, 0, 0, .2);
+  }
+
+  & &__form {
+    width: 100%;
+  }
+
+  & &__text {
+    padding: 12px 0;
+    width:  100%;
+  }
+
+  & &__form-box:not(:first-child) {
+    margin-top: 30px;
+  }
+
+  & &__send {
+    min-width: 52px;
+    max-width: 52px;
+    min-height: 52px;
+    max-height: 52px;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+    position: relative;
+  }
+
+  & &__send-icon {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+  }
+
+  & {
+    @include pc-layout {
+      #{$block}__content {
+        display: flex;
+        margin-top: 60px;
+      }
+
+      #{$block}__form {
+        margin-left: 45px;
+      }
+    }
+    @include sp-layout {
+      #{$block}__send {
+        margin-left: auto;
+        margin-top: 16px;
+      }
+
+      #{$block}__form {
+        margin-top: 62px;
+      }
+    }
+  }
+}

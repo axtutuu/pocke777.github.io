@@ -1,0 +1,30 @@
+.l-footer {
+  &:not(:root) {
+    width: 90%;
+    max-width: 1100px;
+    box-sizing: border-box;
+    margin: 120px auto 0;
+    position: relative;
+
+    @include pc-layout {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  & &__links {
+    color: #cfcfcf;
+
+    @include pc-layout {
+      display: flex;
+    }
+  }
+
+  & &__link {
+    margin: 0 8px;
+
+    @include sp-layout {
+      margin-top: 24px;
+    }
+  }
+}

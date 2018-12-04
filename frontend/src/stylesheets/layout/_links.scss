@@ -1,0 +1,59 @@
+.l-links {
+  $block: &;
+
+  &:not(:root) {
+    width: 90%;
+    max-width: 1100px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: relative;
+
+    @include pc-layout {
+      margin-top: 120px;
+    }
+
+    @include sp-layout {
+      margin: 80px auto 0;
+    }
+  }
+
+  & &__title {
+    color: #979797;
+    font-size: 1.2rem;
+    font-weight: 300;
+
+    @include pc-layout {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(-90deg) translateX(-40%);
+    }
+
+    @include sp-layout {
+      text-align: center;
+    }
+  }
+
+  & &__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  & &__item {
+    @include pc-layout {
+      width: 42%;
+      display: flex;
+      justify-content: space-between;
+      margin-left: 60px;
+
+      #{$block}:nth-child(n+3) {
+        margin-top: 30px;
+      }
+    }
+
+    @include sp-layout {
+      margin-top: 10px;
+    }
+  }
+}
